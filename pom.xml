@@ -17,7 +17,7 @@
 
     <groupId>fun.madeby</groupId>
     <artifactId>gd-pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>gd-pet-clinic</name>
     <description>gd-pet-clinic</description>
 
@@ -54,7 +54,7 @@
     <!--maven release Source Control Management-->
     <scm>
         <developerConnection>scm:git:https://github.com/gra-m/gd-pet-clinic.git</developerConnection>
-      <tag>test-release-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
 
