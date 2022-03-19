@@ -1,7 +1,7 @@
 package fun.madeby.gdpetclinic.services.map;
 
 import fun.madeby.gdpetclinic.model.Owner;
-import fun.madeby.gdpetclinic.services.CrudService;
+import fun.madeby.gdpetclinic.services.OwnerService;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  *
  */
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService{
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -37,4 +37,8 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         return super.findById(id);
     }
 
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
 }
