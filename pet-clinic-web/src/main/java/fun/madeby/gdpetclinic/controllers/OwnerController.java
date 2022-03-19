@@ -1,6 +1,8 @@
 package fun.madeby.gdpetclinic.controllers;
 
+import fun.madeby.gdpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -10,9 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
+    private final OwnerService OWNER_SERVICE;
+
+    public OwnerController(OwnerService owner_service) {
+        OWNER_SERVICE = owner_service;
+    }
 
     @RequestMapping({"", "/", "/index", "/index.html"})
-    public String ownerList() {
+    public String ownerList(Model model) {
+        model.addAttribute("owners", OWNER_SERVICE.findAll());
         return "owners/index";
     }
 }
