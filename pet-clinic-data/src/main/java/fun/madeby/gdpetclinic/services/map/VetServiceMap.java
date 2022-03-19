@@ -2,13 +2,14 @@ package fun.madeby.gdpetclinic.services.map;
 
 import fun.madeby.gdpetclinic.model.Vet;
 import fun.madeby.gdpetclinic.services.VetService;
-
+import org.springframework.stereotype.Service;
 import java.util.Set;
 
 /**
  * Created by Gra_m on 2022 03 17
  */
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {

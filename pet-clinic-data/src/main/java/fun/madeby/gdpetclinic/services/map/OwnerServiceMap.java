@@ -2,7 +2,7 @@ package fun.madeby.gdpetclinic.services.map;
 
 import fun.madeby.gdpetclinic.model.Owner;
 import fun.madeby.gdpetclinic.services.OwnerService;
-
+import org.springframework.stereotype.Service;
 import java.util.Set;
 
 /**
@@ -10,6 +10,7 @@ import java.util.Set;
  *
  */
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService{
     @Override
     public Set<Owner> findAll() {
