@@ -5,7 +5,23 @@
     <title>Pet Clinic Vets Page</title>
 </head>
 <body>
-<h1 th:text="'This is Vet text'">Replaced at runtime</h1>
+<h1 th:text="'List of Vets'">Replaced at runtime</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vet : ${vets}">
+        <td th:text="${vet?.id}">id-placeholder</td>
+        <td th:text="${vet?.firstName}">firstName-placeholder</td>
+        <td th:text="${vet?.lastName}">lastName-placeholder</td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
