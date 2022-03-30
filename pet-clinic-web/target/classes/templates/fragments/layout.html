@@ -70,8 +70,15 @@
   </nav>
   <div class="container-fluid">
       <div class="container xd-container">
-  
-          <th:block th:include="${template}"/>
+
+          <h2 th:text="#{welcome}">Replaced at runtime</h2>
+          <div class="row">
+              <div class="col-md-12">
+                  <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+              </div>
+          </div>
+
+         <!-- <th:block th:include="${template}"/>-->
 
         <br/>
         <br/>
