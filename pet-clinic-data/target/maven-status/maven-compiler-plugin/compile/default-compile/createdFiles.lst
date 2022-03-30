@@ -1,5 +1,14 @@
 fun\madeby\gdpetclinic\model\PetType.class
-fun\madeby\gdpetclinic\model\Vet.class
-fun\madeby\gdpetclinic\model\Pet.class
+fun\madeby\gdpetclinic\services\PetService.class
+fun\madeby\gdpetclinic\services\CrudService.class
 fun\madeby\gdpetclinic\model\Owner.class
+fun\madeby\gdpetclinic\services\map\AbstractMapService.class
+fun\madeby\gdpetclinic\services\OwnerService.class
+fun\madeby\gdpetclinic\services\VetService.class
+fun\madeby\gdpetclinic\model\Vet.class
+fun\madeby\gdpetclinic\services\map\VetServiceMap.class
+fun\madeby\gdpetclinic\model\Pet.class
+fun\madeby\gdpetclinic\services\map\OwnerServiceMap.class
+fun\madeby\gdpetclinic\services\map\PetServiceMap.class
+fun\madeby\gdpetclinic\model\BaseEntity.class
 fun\madeby\gdpetclinic\model\Person.class

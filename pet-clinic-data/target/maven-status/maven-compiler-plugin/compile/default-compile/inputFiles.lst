@@ -1,5 +1,14 @@
-C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Vet.java
-C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Owner.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\BaseEntity.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\map\OwnerServiceMap.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\CrudService.java
 C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Pet.java
 C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Person.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\VetService.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Vet.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\PetService.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\Owner.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\OwnerService.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\map\PetServiceMap.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\map\VetServiceMap.java
 C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\model\PetType.java
+C:\Users\Gra_m\Documents\JAVA\002_Spring\U\Guru\gd-pet-clinic\pet-clinic-data\src\main\java\fun\madeby\gdpetclinic\services\map\AbstractMapService.java

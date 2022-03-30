@@ -1,1 +1,5 @@
+fun\madeby\gdpetclinic\controllers\IndexController.class
+fun\madeby\gdpetclinic\controllers\OwnerController.class
+fun\madeby\gdpetclinic\bootstrap\DataLoader.class
 fun\madeby\gdpetclinic\GdPetClinicApplication.class
+fun\madeby\gdpetclinic\controllers\VetController.class
