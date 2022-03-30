@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" >
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body}, 'home')}" >
     <title>Pet Clinic Index Page</title>
 </head>
 <body>
-<h1 th:text="'This is text'">Replaced at runtime</h1>
+<h2 th:text="#{welcome}">Replaced at runtime</h2>
+
+<div class="row">
+   <div class="col-md-12">
+       <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+   </div>
+</div>
 
 </body>
 </html>
