@@ -1,7 +1,7 @@
 package fun.madeby.gdpetclinic.services.map;
 
 import fun.madeby.gdpetclinic.model.Speciality;
-import fun.madeby.gdpetclinic.services.SpecialityService;
+import fun.madeby.gdpetclinic.services.SpecialitiesService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by Gra_m on 2022 03 31
  */
 @Service
-public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
+public class SpecialitiesServiceMap extends AbstractMapService<Speciality, Long> implements SpecialitiesService {
 
     @Override
     public Set<Speciality> findAll() {

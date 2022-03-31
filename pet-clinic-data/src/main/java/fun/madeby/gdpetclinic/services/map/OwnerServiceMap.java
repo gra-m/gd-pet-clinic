@@ -63,6 +63,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     /**
      * Aim: To emulate Hibernate by ensuring all object IDs are in sync.
      * PetType must not be null and must have an id when an owner is saved. Pets must also all be saved with ids.
+     * An owner may not have a pet when saved.
      * @param pets
      * @return boolean
      */
