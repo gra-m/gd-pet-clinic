@@ -2,10 +2,14 @@ package fun.madeby.gdpetclinic.services.map;
 
 import fun.madeby.gdpetclinic.model.Owner;
 import fun.madeby.gdpetclinic.model.Pet;
+import fun.madeby.gdpetclinic.model.PetType;
 import fun.madeby.gdpetclinic.services.OwnerService;
 import fun.madeby.gdpetclinic.services.PetService;
 import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -43,32 +47,43 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner obj) {
-       // todo refactor this with helper methods
-        // We want to emulate what we'll do in Hibernate, so if an owner has pets,
-        // the PetType cannot be null and they must have or be given an id through saving. We are ensuring everything
-        // has an id and they are all in sync.
+        if (obj == null)
+            return null;
 
-       if(obj != null) {
-           if (obj.getPets() != null) {
-               obj.getPets().forEach(pet -> {
-                   if (pet.getPetType() != null) { //check PetType not null
-                      if (pet.getPetType().getId() == null) { // if PetType not persisted persist it now
-                          pet.setPetType(PET_TYPE_SERVICE.save(pet.getPetType()));
-                      }
-                   }else {
-                       throw new RuntimeException("Pet type is required");
-                   }
-                   // explicit check
-                   if (pet.getId() == null) {
-                       Pet savedPet = PET_SERVICE.save(pet);
-                       pet.setId(savedPet.getId());
-                   }
-               });
-           }
-           return super.save(obj);
-       } else {
-           return null;
-       }
+        HashSet<Pet> pets = (HashSet<Pet>) obj.getPets();
+        if (pets.isEmpty())
+            return super.save(obj);
+
+        boolean PetsAndPetTypesHaveIds = checkPetsAndTypes(pets);
+        if (PetsAndPetTypesHaveIds)
+            return super.save(obj);
+        else
+            return null;
+    }
+
+    /**
+     * Aim: To emulate Hibernate by ensuring all object IDs are in sync.
+     * PetType must not be null and must have an id when an owner is saved. Pets must also all be saved with ids.
+     * @param pets
+     * @return boolean
+     */
+    private boolean checkPetsAndTypes(HashSet<Pet> pets) {
+        if(pets.isEmpty())
+            return false;
+        pets.forEach(pet -> {
+            PetType petType = pet.getPetType();
+            Long petTypeId = petType.getId();
+            Long petId = pet.getId();
+            if (petType == null)
+                throw new RuntimeException("Pet type is required");
+            if (petTypeId == null)
+                pet.setPetType(PET_TYPE_SERVICE.save(petType));
+            if (petId == null) {
+                Pet savedPet = PET_SERVICE.save(pet);
+                pet.setId(savedPet.getId());
+            }
+        });
+        return true;
     }
 
     @Override

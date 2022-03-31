@@ -87,6 +87,17 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Loaded Owners with their pets....");
 
+        System.out.println("PRINTING OWNER PETS");
+
+        owner1.getPets().forEach(pet -> {
+            System.out.println(pet);
+        });
+
+        owner2.getPets().forEach(pet -> {
+            System.out.println(pet);
+        });
+
+
 
 
         Vet vet1 = new Vet();
