@@ -8,7 +8,6 @@ import fun.madeby.gdpetclinic.services.PetService;
 import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
