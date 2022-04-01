@@ -14,4 +14,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("/oups")
+    public String errorMenu() {
+        return "not-implemented";
+    }
 }
