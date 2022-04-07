@@ -1,10 +1,17 @@
 package fun.madeby.gdpetclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by Gra_m on 2022 03 31
  */
-
+@Entity
+@Table(name = "specialities")
 public class Speciality extends BaseEntity {
+
+    @Column(name = "description")
     private String description;
 
     public String getDescription() {
