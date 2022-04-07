@@ -2,6 +2,8 @@ package fun.madeby.gdpetclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Gra_m on 2022 03 14
@@ -22,6 +24,10 @@ public class Pet extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    //Lazy default
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visits = new HashSet<>();
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
