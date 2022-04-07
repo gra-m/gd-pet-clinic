@@ -1,15 +1,29 @@
 package fun.madeby.gdpetclinic.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Created by Gra_m on 2022 03 14
  */
 
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity{
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "type")
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private PetType petType;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     public String getName() {
