@@ -60,6 +60,6 @@ public class OwnerSDJpaService implements OwnerService {
 
     @Override
     public Owner findByLastName(String lastName) {
-        return OWNER_REPO.findByLastName(lastName);
+        return OWNER_REPO.findOwnerByLastName(lastName);
     }
 }
