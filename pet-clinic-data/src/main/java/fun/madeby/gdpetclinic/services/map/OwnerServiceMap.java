@@ -53,8 +53,8 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         if (pets.isEmpty())
             return super.save(obj);
 
-        boolean PetsAndPetTypesHaveIds = checkPetsAndTypes(pets);
-        if (PetsAndPetTypesHaveIds)
+        boolean petsAndPetTypesHaveIds = checkPetsAndTypes(pets);
+        if (petsAndPetTypesHaveIds)
             return super.save(obj);
         else
             return null;
