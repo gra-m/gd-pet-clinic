@@ -1,5 +1,7 @@
 package fun.madeby.gdpetclinic.model;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,25 +9,15 @@ import javax.persistence.Table;
 /**
  * Created by Gra_m on 2022 03 31
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "specialities")
 public class Speciality extends BaseEntity {
 
     @Column(name = "description")
     private String description;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Speciality{" +
-                "description='" + description + '\'' +
-                '}';
-    }
 }

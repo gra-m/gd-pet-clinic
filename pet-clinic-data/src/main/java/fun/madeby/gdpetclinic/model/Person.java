@@ -1,5 +1,8 @@
 package fun.madeby.gdpetclinic.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -7,6 +10,9 @@ import javax.persistence.MappedSuperclass;
  * Created by Gra_m on 2022 03 14
  */
 
+
+@Getter
+@Setter
 @MappedSuperclass
 public class Person extends BaseEntity{
 
@@ -14,20 +20,4 @@ public class Person extends BaseEntity{
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

@@ -40,6 +40,11 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
+        //Testing builder, it currently does not work with inheritance:
+        Owner.builder().address("asdf").build();
+        // builder cannot access firstname/lastname/id of super classes.
+
+
         Speciality speciality01 = new Speciality();
         Speciality speciality02 = new Speciality();
         Speciality speciality03 = new Speciality();
