@@ -4,6 +4,7 @@ import fun.madeby.gdpetclinic.model.Speciality;
 import fun.madeby.gdpetclinic.model.Vet;
 import fun.madeby.gdpetclinic.services.SpecialitiesService;
 import fun.madeby.gdpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import java.util.Set;
  */
 
 @Service
+@Profile({"default", "map"})
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     private final SpecialitiesService SPECIALITY_SERVICE;
 
