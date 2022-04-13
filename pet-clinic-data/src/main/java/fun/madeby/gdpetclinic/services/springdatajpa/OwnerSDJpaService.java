@@ -7,7 +7,6 @@ import fun.madeby.gdpetclinic.repositories.PetTypeRepository;
 import fun.madeby.gdpetclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
