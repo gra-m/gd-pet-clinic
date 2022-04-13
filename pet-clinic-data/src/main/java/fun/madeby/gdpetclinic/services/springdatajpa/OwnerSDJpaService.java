@@ -39,7 +39,13 @@ public class OwnerSDJpaService implements OwnerService {
 
     @Override
     public Owner findById(Long aLong) {
-        return OWNER_REPO.findById(aLong).orElseThrow(NoSuchElementException::new);
+        try {
+            return OWNER_REPO.findById(aLong).orElseThrow(NoSuchElementException::new);
+        }catch (NoSuchElementException e) {
+            System.out.println("Owner findById returning null: could display a code and be added to log");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

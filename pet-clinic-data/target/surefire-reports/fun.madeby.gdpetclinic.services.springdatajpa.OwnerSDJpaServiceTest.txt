@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+Test set: fun.madeby.gdpetclinic.services.springdatajpa.OwnerSDJpaServiceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.56 s <<< FAILURE! - in fun.madeby.gdpetclinic.services.springdatajpa.OwnerSDJpaServiceTest
+delete  Time elapsed: 0.543 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+
+findAll  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+
+findById  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+
+save  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+
+findByLastName  Time elapsed: 0.011 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+	at fun.madeby.gdpetclinic.services.springdatajpa.OwnerSDJpaServiceTest.findByLastName(OwnerSDJpaServiceTest.java:64)
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+	at fun.madeby.gdpetclinic.services.springdatajpa.OwnerSDJpaServiceTest.findByLastName(OwnerSDJpaServiceTest.java:64)
+
+deleteById  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/test/util/AopTestUtils
+Caused by: java.lang.ClassNotFoundException: org.springframework.test.util.AopTestUtils
+
