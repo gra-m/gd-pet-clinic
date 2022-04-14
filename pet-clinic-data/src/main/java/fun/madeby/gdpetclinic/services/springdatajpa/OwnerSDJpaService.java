@@ -42,7 +42,7 @@ public class OwnerSDJpaService implements OwnerService {
         try {
             return OWNER_REPO.findById(aLong).orElseThrow(NoSuchElementException::new);
         }catch (NoSuchElementException e) {
-            System.out.println("Owner findById returning null: could display a code and be added to log");
+            System.out.println("PURPOSELY THROWN NoSuchElementException:OwnerSDJpaService\n|| findById returning null: could display a code and be added to log");
             e.printStackTrace();
         }
         return null;
