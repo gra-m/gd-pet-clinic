@@ -54,7 +54,7 @@
                       <span>Find owners</span>
                   </li>
   
-                  <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
+                  <li th:replace="::menuItem ('/vets','vets','veterinarians','th-list','Veterinarians')">
                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                       <span>Veterinarians</span>
                   </li>
@@ -71,7 +71,7 @@
   <div class="container-fluid">
       <div class="container xd-container">
 
-          <!-- pulls in template eg index.html or vets/index.html -->
+          <!-- pulls in template eg list.html or vets/list.html -->
           <th:block th:include="${template}"/>
 
 

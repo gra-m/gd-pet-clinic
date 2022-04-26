@@ -1,15 +1,16 @@
 package fun.madeby.gdpetclinic.controllers;
 
 import fun.madeby.gdpetclinic.services.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by Gra_m on 2022 03 18
  */
 
-@RequestMapping("/owners")
+@Slf4j
 @Controller
 public class OwnerController {
     private final OwnerService OWNER_SERVICE;
@@ -18,14 +19,16 @@ public class OwnerController {
         OWNER_SERVICE = owner_service;
     }
 
-    @RequestMapping({"","/", "/index", "/index.html"})
+    @GetMapping("/owners")
     public String ownerList(Model model) {
+        log.debug("/owners");
         model.addAttribute("owners", OWNER_SERVICE.findAll());
-        return "owners/index";
+        return "owners/list";
     }
 
-    @RequestMapping("/find")
+    @GetMapping("/owners/find")
     public String findOwners() {
+        log.debug("/owners/find");
         return "not-implemented";
     }
 }

@@ -4,6 +4,10 @@
 /build/www/**
 /src/test/javascript/coverage/
 /src/test/javascript/PhantomJS*/
+*/*/target/*
+.gitignore
+*/target/*
+target/*
 
 ######################
 # Node
@@ -139,3 +143,4 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+/pet-clinic-web/target/

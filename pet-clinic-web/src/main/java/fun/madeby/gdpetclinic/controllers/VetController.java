@@ -1,15 +1,17 @@
 package fun.madeby.gdpetclinic.controllers;
 
 import fun.madeby.gdpetclinic.services.VetService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by Gra_m on 2022 03 18
  */
 
-@RequestMapping("/vets")
+@Slf4j
 @Controller
 public class VetController {
     private final VetService VET_SERVICE;
@@ -18,9 +20,10 @@ public class VetController {
         VET_SERVICE = vet_service;
     }
 
-    @RequestMapping({"", "/", "/index", "/index.html", "/vets.html" })
+    @GetMapping( "/vets" )
     public String listVets(Model model) {
+        log.debug("/vets");
         model.addAttribute("vets", VET_SERVICE.findAll());
-       return "vets/index";
+       return "vets/list";
     }
 }

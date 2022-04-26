@@ -1,22 +1,26 @@
 package fun.madeby.gdpetclinic.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by Gra_m on 2022 03 18
  */
-@RequestMapping({"/", ""})
+
+@Slf4j
 @Controller
 public class IndexController {
 
-    @RequestMapping({"", "index", "index.html"})
+    @GetMapping({"", "/" })
     public String index() {
+        log.debug("/ or ''");
         return "index";
     }
 
-    @RequestMapping("/oups")
+    @GetMapping("/oups")
     public String errorMenu() {
+        log.debug("/oups");
         return "not-implemented";
     }
 }
