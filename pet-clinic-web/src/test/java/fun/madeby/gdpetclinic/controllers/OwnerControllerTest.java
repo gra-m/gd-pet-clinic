@@ -17,9 +17,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 class OwnerControllerTest {
@@ -30,6 +33,7 @@ class OwnerControllerTest {
     OwnerController controllerUnderTest;
     // for comparison if poss to get to returned objs
     Owner owner1;
+    Long owner1Id = 1L;
     Set<Owner> ownerSet;
     // My business logic insists on petSet, can be empty
     Set<Pet> petSet;
@@ -40,7 +44,7 @@ class OwnerControllerTest {
     void setUp() {
         ownerSet = new HashSet<>();
         //(same petset poss issue if H2)
-        owner1 = Owner.builder().id(1L).pets(petSet).build();
+        owner1 = Owner.builder().id(owner1Id).pets(petSet).build();
         ownerSet.add(owner1);
         ownerSet.add(Owner.builder().id(2L).pets(petSet).build());
 
@@ -57,10 +61,10 @@ class OwnerControllerTest {
                 .thenReturn(ownerSet);
 
         //..then
-        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+        mockMvc.perform(get("/owners"))
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("owners/index"))
-                .andExpect(MockMvcResultMatchers.model().attribute("owners", hasSize(2)));
+                .andExpect(model().attribute("owners", hasSize(2)));
     }
 
     @Test
@@ -71,10 +75,10 @@ class OwnerControllerTest {
                 .thenReturn(ownerSet);
 
         //..then
-        mockMvc.perform(MockMvcRequestBuilders.get("/owners/index"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+        mockMvc.perform(get("/owners/index"))
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("owners/index"))
-                .andExpect(MockMvcResultMatchers.model().attribute("owners", hasSize(2)));
+                .andExpect(model().attribute("owners", hasSize(2)));
     }
 
     @Test
@@ -82,11 +86,22 @@ class OwnerControllerTest {
         // given endpoint not yet implemented
 
         // when endpoint call || then
-        mockMvc.perform(MockMvcRequestBuilders.get("/owners/find"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+        mockMvc.perform(get("/owners/find"))
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("not-implemented"));
 
         verifyNoInteractions(ownerService);
+
+    }
+
+    @Test
+    void testGetOwner() throws Exception {
+        //given
+        when(ownerService.findById(anyLong())).thenReturn(owner1);
+
+        mockMvc.perform(get("/owners/123"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("owner", hasProperty("id", is(owner1Id))));
 
     }
 }
