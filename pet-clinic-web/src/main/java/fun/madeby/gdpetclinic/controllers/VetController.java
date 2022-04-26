@@ -4,7 +4,9 @@ import fun.madeby.gdpetclinic.services.VetService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -15,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class VetController {
     private final VetService VET_SERVICE;
+
+    @InitBinder
+    public void setAllowedFields(WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+    }
 
     public VetController(VetService vet_service) {
         VET_SERVICE = vet_service;
