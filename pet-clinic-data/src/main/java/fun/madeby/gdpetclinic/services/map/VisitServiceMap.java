@@ -15,10 +15,10 @@ import java.util.Set;
 @Service
 @Profile({"default", "map"})
 public class VisitServiceMap extends AbstractMapService<Visit, Long> implements VisitService {
-    private final PetService PET_SERVICE;
+    private final PetService petService;
 
     public VisitServiceMap(PetService pet_service) {
-        PET_SERVICE = pet_service;
+        petService = pet_service;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class VisitServiceMap extends AbstractMapService<Visit, Long> implements 
         if(pet == null || pet.getOwner() == null || pet.getOwner().getId() == null)
             return false;
         if (pet.getId() == null) {
-            Pet savedPet = PET_SERVICE.save(pet);
+            Pet savedPet = petService.save(pet);
             pet.setId(savedPet.getId());
         }
         return true;

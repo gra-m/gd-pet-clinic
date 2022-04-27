@@ -18,34 +18,34 @@ import java.util.Set;
 @Service
 @Profile("jpaService")
 public class SpecialitiesSDJpaService implements SpecialitiesService {
-    private final SpecialityRepository SPECIALITY_REPOSITORY;
+    private final SpecialityRepository specialityRepository;
 
     public SpecialitiesSDJpaService(SpecialityRepository speciality_repository) {
-        SPECIALITY_REPOSITORY = speciality_repository;
+        specialityRepository = speciality_repository;
     }
 
     @Override
     public Set<Speciality> findAll() {
-        return new HashSet<>((Collection<? extends Speciality>)SPECIALITY_REPOSITORY.findAll());
+        return new HashSet<>((Collection<? extends Speciality>) specialityRepository.findAll());
     }
 
     @Override
     public Speciality findById(Long aLong) {
-        return SPECIALITY_REPOSITORY.findById(aLong).orElseThrow(NoSuchElementException::new) ;
+        return specialityRepository.findById(aLong).orElseThrow(NoSuchElementException::new) ;
     }
 
     @Override
     public Speciality save(Speciality object) {
-        return SPECIALITY_REPOSITORY.save(object);
+        return specialityRepository.save(object);
     }
 
     @Override
     public void delete(Speciality object) {
-        SPECIALITY_REPOSITORY.delete(object);
+        specialityRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-        SPECIALITY_REPOSITORY.deleteById(aLong);
+        specialityRepository.deleteById(aLong);
     }
 }

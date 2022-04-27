@@ -18,35 +18,35 @@ import java.util.Set;
 @Service
 @Profile("jpaService")
 public class PetSDJpaService implements PetService {
-    private final PetRepository PET_REPOSITORY;
+    private final PetRepository petRepository;
 
     public PetSDJpaService(PetRepository petRepository) {
-        this.PET_REPOSITORY = petRepository;
+        this.petRepository = petRepository;
     }
 
     @Override
     public Set<Pet> findAll() {
-        return new HashSet<>((Collection<? extends Pet>) PET_REPOSITORY.findAll());
+        return new HashSet<>((Collection<? extends Pet>) petRepository.findAll());
 
     }
 
     @Override
     public Pet findById(Long aLong) {
-        return PET_REPOSITORY.findById(aLong).orElseThrow(NoSuchElementException::new);
+        return petRepository.findById(aLong).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
     public Pet save(Pet object) {
-        return PET_REPOSITORY.save(object);
+        return petRepository.save(object);
     }
 
     @Override
     public void delete(Pet object) {
-        PET_REPOSITORY.delete(object);
+        petRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-        PET_REPOSITORY.deleteById(aLong);
+        petRepository.deleteById(aLong);
     }
 }

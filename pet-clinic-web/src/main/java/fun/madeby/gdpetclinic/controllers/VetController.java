@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by Gra_m on 2022 03 18
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 public class VetController {
-    private final VetService VET_SERVICE;
+    private final VetService vetService;
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
@@ -24,13 +23,13 @@ public class VetController {
     }
 
     public VetController(VetService vet_service) {
-        VET_SERVICE = vet_service;
+        vetService = vet_service;
     }
 
     @GetMapping( "/vets" )
     public String listVets(Model model) {
         log.debug("/vets");
-        model.addAttribute("vets", VET_SERVICE.findAll());
+        model.addAttribute("vets", vetService.findAll());
        return "vets/list";
     }
 }

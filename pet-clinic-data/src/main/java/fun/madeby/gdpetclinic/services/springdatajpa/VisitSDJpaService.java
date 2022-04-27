@@ -17,35 +17,35 @@ import java.util.Set;
 @Service
 @Profile("jpaService")
 public class VisitSDJpaService implements VisitService {
-    private final VisitRepository VISIT_REPOSITORY;
+    private final VisitRepository visitRepository;
 
     public VisitSDJpaService(VisitRepository visit_repository) {
-        VISIT_REPOSITORY = visit_repository;
+        visitRepository = visit_repository;
     }
 
 
     @Override
     public Set<Visit> findAll() {
-        return new HashSet<>((Collection<? extends Visit>) VISIT_REPOSITORY.findAll());
+        return new HashSet<>((Collection<? extends Visit>) visitRepository.findAll());
     }
 
     @Override
     public Visit findById(Long aLong) {
-        return VISIT_REPOSITORY.findById(aLong).orElseThrow(NoSuchElementException::new);
+        return visitRepository.findById(aLong).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
     public Visit save(Visit object) {
-        return VISIT_REPOSITORY.save(object);
+        return visitRepository.save(object);
     }
 
     @Override
     public void delete(Visit object) {
-        VISIT_REPOSITORY.delete(object);
+        visitRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-        VISIT_REPOSITORY.deleteById(aLong);
+        visitRepository.deleteById(aLong);
     }
 }

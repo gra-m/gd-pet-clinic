@@ -23,15 +23,15 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class OwnerController {
-    private final OwnerService OWNER_SERVICE;
-    private final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/owner-form";
+    private final OwnerService ownerService;
+    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/owner-form";
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
 
     public OwnerController(OwnerService owner_service) {
-        OWNER_SERVICE = owner_service;
+        ownerService = owner_service;
     }
 
     // region Owner Create/Update
@@ -60,7 +60,7 @@ public class OwnerController {
         if (result.hasErrors())
             return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         else {
-            Owner savedOwner = OWNER_SERVICE.save(owner);
+            Owner savedOwner = ownerService.save(owner);
             return "redirect:/owners/" + savedOwner.getId();
         }
    }
@@ -68,7 +68,7 @@ public class OwnerController {
    @GetMapping("/owners/{ownerId}/edit")
    public String initUpdateOwnerForm(@PathVariable("ownerId") Long ownerId, Model model) {
 
-       model.addAttribute("owner", OWNER_SERVICE.findById(ownerId));
+       model.addAttribute("owner", ownerService.findById(ownerId));
 
        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 
@@ -80,7 +80,7 @@ public class OwnerController {
            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
        else {
            owner.setId(ownerId); // if hidden should never be able to be null?
-           Owner savedOwner = OWNER_SERVICE.save(owner);
+           Owner savedOwner = ownerService.save(owner);
            return "redirect:/owners/" + savedOwner.getId();
        }
 
@@ -94,7 +94,7 @@ public class OwnerController {
       log.debug("/owners/{ownerId}");
 
         ModelAndView modelAndView = new ModelAndView("owners/owner-details");
-        modelAndView.addObject(OWNER_SERVICE.findById(ownerId));
+        modelAndView.addObject(ownerService.findById(ownerId));
 
         return modelAndView;
     }
@@ -122,7 +122,7 @@ public class OwnerController {
             owner.setLastName("");
         }
 
-        List<Owner> results = OWNER_SERVICE.findAllByLastName(owner.getLastName());
+        List<Owner> results = ownerService.findAllByLastName(owner.getLastName());
 
         if (results.isEmpty()) {
             log.debug("processFindForm 01b returning all owners");

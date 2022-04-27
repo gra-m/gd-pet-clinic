@@ -22,12 +22,12 @@ import java.util.Set;
 @Service
 @Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService{
-    private final PetTypeService PET_TYPE_SERVICE;
-    private final PetService PET_SERVICE;
+    private final PetTypeService petTypeService;
+    private final PetService petService;
 
     public OwnerServiceMap(PetTypeService pet_type_service, PetService pet_service) {
-        PET_TYPE_SERVICE = pet_type_service;
-        PET_SERVICE = pet_service;
+        petTypeService = pet_type_service;
+        petService = pet_service;
     }
 
 
@@ -80,9 +80,9 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
             if (petType == null)
                 throw new RuntimeException("Pet type is required");
             if (petTypeId == null)
-                pet.setPetType(PET_TYPE_SERVICE.save(petType));
+                pet.setPetType(petTypeService.save(petType));
             if (petId == null) {
-                Pet savedPet = PET_SERVICE.save(pet);
+                Pet savedPet = petService.save(pet);
                 pet.setId(savedPet.getId());
             }
         });

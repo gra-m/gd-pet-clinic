@@ -18,40 +18,40 @@ import java.util.Set;
 @Profile("jpaService")
 public class VetSDJpaService implements VetService {
 
-    private final VetRepository VET_REPOSITORY;
+    private final VetRepository vetRepository;
     public VetSDJpaService(VetRepository vetRepository) {
-        this.VET_REPOSITORY = vetRepository;
+        this.vetRepository = vetRepository;
     }
 
     @Override
     public Set<Vet> findAll() {
         Set<Vet> iterableToSet = new HashSet<>();
-        VET_REPOSITORY.findAll().forEach(iterableToSet::add);
+        vetRepository.findAll().forEach(iterableToSet::add);
         return iterableToSet;
     }
 
     @Override
     public Vet findById(Long aLong) {
-        return VET_REPOSITORY.findById(aLong).orElseThrow(NoSuchElementException::new);
+        return vetRepository.findById(aLong).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
     public Vet save(Vet object) {
-        return VET_REPOSITORY.save(object);
+        return vetRepository.save(object);
     }
 
     @Override
     public void delete(Vet object) {
-        VET_REPOSITORY.delete(object);
+        vetRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-        VET_REPOSITORY.deleteById(aLong);
+        vetRepository.deleteById(aLong);
     }
 
     @Override
     public Vet findByLastName(String lastName) {
-        return VET_REPOSITORY.findVetByLastName(lastName);
+        return vetRepository.findVetByLastName(lastName);
     }
 }

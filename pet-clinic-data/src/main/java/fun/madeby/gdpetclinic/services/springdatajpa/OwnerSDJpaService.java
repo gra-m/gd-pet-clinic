@@ -19,29 +19,29 @@ import java.util.Set;
 @Service
 @Profile("jpaService")
 public class OwnerSDJpaService implements OwnerService {
-    private final OwnerRepository OWNER_REPO;
-    private final PetRepository PET_REPO;
-    private final PetTypeRepository PET_TYPE_REPO;
+    private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
     public OwnerSDJpaService(OwnerRepository owner_repo,
                              PetRepository pet_repo,
                              PetTypeRepository pet_type_repo) {
-        OWNER_REPO = owner_repo;
-        PET_REPO = pet_repo;
-        PET_TYPE_REPO = pet_type_repo;
+        ownerRepository = owner_repo;
+        petRepository = pet_repo;
+        petTypeRepository = pet_type_repo;
     }
 
     @Override
     public Set<Owner> findAll() {
         Set<Owner> allOwners = new HashSet<>();
-        OWNER_REPO.findAll().forEach(allOwners::add);
+        ownerRepository.findAll().forEach(allOwners::add);
         return allOwners;
     }
 
     @Override
     public Owner findById(Long aLong) {
         try {
-            return OWNER_REPO.findById(aLong).orElseThrow(NoSuchElementException::new);
+            return ownerRepository.findById(aLong).orElseThrow(NoSuchElementException::new);
         }catch (NoSuchElementException e) {
             System.out.println("PURPOSELY THROWN NoSuchElementException:OwnerSDJpaService\n|| findById returning null: could display a code and be added to log");
             e.printStackTrace();
@@ -51,26 +51,26 @@ public class OwnerSDJpaService implements OwnerService {
 
     @Override
     public Owner save(Owner object) {
-       return OWNER_REPO.save(object);
+       return ownerRepository.save(object);
     }
 
     @Override
     public void delete(Owner object) {
-        OWNER_REPO.delete(object);
+        ownerRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-        OWNER_REPO.deleteById(aLong);
+        ownerRepository.deleteById(aLong);
     }
 
     @Override
     public Owner findByLastName(String lastName) {
-        return OWNER_REPO.findOwnerByLastName(lastName);
+        return ownerRepository.findOwnerByLastName(lastName);
     }
 
     @Override
     public List<Owner> findAllByLastName(String lastName) {
-       return OWNER_REPO.findAllByLastNameLikeIgnoreCase("%" + lastName + "%");
+       return ownerRepository.findAllByLastNameLikeIgnoreCase("%" + lastName + "%");
     }
 }
