@@ -34,13 +34,15 @@ public class OwnerController {
         OWNER_SERVICE = owner_service;
     }
 
+    // region Owner Create/Update
+
     /**
      *
      * @param model
      * @return
      */
    @GetMapping("/owners/new")
-   public String initCreationForm(Map<String, Object> model) {
+   public String initOwnerCreationForm(Map<String, Object> model) {
         Owner owner = new Owner();
         model.put("owner", owner);
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
@@ -48,13 +50,13 @@ public class OwnerController {
    }
 
     /**
-     * @Valid Owner owner not available
+     * @Valid Owner owner not recognised from original code
      * @param owner
      * @param result
      * @return
      */
    @PostMapping("/owners/new")
-   public String processCreationForm(Owner owner, BindingResult result) {
+   public String processOwnerCreationForm(Owner owner, BindingResult result) {
         if (result.hasErrors())
             return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         else {
@@ -62,6 +64,29 @@ public class OwnerController {
             return "redirect:/owners/" + savedOwner.getId();
         }
    }
+
+   @GetMapping("/owners/{ownerId}/edit")
+   public String initUpdateOwnerForm(@PathVariable("ownerId") Long ownerId, Model model) {
+
+       model.addAttribute("owner", OWNER_SERVICE.findById(ownerId));
+
+       return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+
+   }
+
+    @PostMapping("/owners/{ownerId}/edit")
+    public String processUpdateOwnerForm(Owner owner, BindingResult result, @PathVariable("ownerId") Long ownerId) {
+       if(result.hasErrors())
+           return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+       else {
+           owner.setId(ownerId); // if hidden should never be able to be null?
+           Owner savedOwner = OWNER_SERVICE.save(owner);
+           return "redirect:/owners/" + savedOwner.getId();
+       }
+
+    }
+
+   //endregion
 
 
     @GetMapping("/owners/{ownerId}")
