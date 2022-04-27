@@ -24,7 +24,7 @@ import java.util.Map;
 @Controller
 public class OwnerController {
     private final OwnerService OWNER_SERVICE;
-    private final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/unknown/at/present";
+    private final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/owner-form";
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");

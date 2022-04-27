@@ -11,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.*;
@@ -37,7 +36,7 @@ class OwnerControllerTest {
     Set<Pet> petSet;
     // Test endpoints, standalone == less resource
     MockMvc mockMvc;
-    String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/unknown/at/present";
+    String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/owner-form";
 
     @BeforeEach
     void setUp() {
@@ -115,13 +114,6 @@ class OwnerControllerTest {
                 .andExpect(view().name("redirect:/owners/" + owner1Id));
     }
 
-
-
-
-
-
-
-
     //endregion
 
 
@@ -185,9 +177,6 @@ class OwnerControllerTest {
                 .andExpect(view().name("owners/owner-list"))
                 .andExpect(model().attribute("selections", hasSize(2)));;
     }
-
-
-
 
     //endregion
 }
