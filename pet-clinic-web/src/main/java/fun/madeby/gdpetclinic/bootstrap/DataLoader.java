@@ -90,7 +90,7 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Halsow");
-        owner2.setLastName("Lalsew");
+        owner2.setLastName("Hum-Lalsew");
         owner2.setAddress("139, Denton Place");
         owner2.setCity("Lef-tover");
         owner2.setTelephone("+03 0617 635591");

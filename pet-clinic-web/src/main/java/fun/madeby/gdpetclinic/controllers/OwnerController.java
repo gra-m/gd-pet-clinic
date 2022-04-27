@@ -49,6 +49,14 @@ public class OwnerController {
         return "owners/find-owners";
     }
 
+    /** Process Find Form
+     * Three pathways available to each form submission
+     *
+     * @param owner  submitted object
+     * @param result injected, handles not found error
+     * @param model
+     * @return 01 error, try again, 02 single owner displayed, 03 matching selection displayed
+     */
     @GetMapping("/owners")
     public String processFindForm(Owner owner, BindingResult result, Model model){
         if (owner.getLastName() == null) {
@@ -63,11 +71,11 @@ public class OwnerController {
             result.rejectValue("lastName", "notFound", "not found");
             return "owners/find-owners";
         } else if (results.size() == 1) {
-            log.debug("processFindForm 03 Found exactly 1 owner redirecting to details");
+            log.debug("processFindForm 02 Found exactly 1 owner redirecting to details");
             owner = results.get(0);
             return "redirect:/owners/" + owner.getId();
         } else {
-            log.debug("processFindForm 04 Found Multiple Owners matching that last name");
+            log.debug("processFindForm 03 Found Multiple Owners matching that last name");
             model.addAttribute("selections", results);
             return "owners/owner-list";
         }
