@@ -1,11 +1,13 @@
 package fun.madeby.gdpetclinic.controllers;
 
+import com.mysql.cj.protocol.ResultBuilder;
 import fun.madeby.gdpetclinic.model.Owner;
 import fun.madeby.gdpetclinic.model.Pet;
 import fun.madeby.gdpetclinic.services.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -13,15 +15,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -53,6 +55,41 @@ class OwnerControllerTest {
                 .build();
     }
 
+    @Test
+    void testInitCreationForm() throws Exception {
+        //given
+        Map<String, Object> model = new HashMap<>(1);
+        Owner owner = Owner.builder().id(3L).build();
+        model.put("owner", owner);
+
+        //when
+
+        mockMvc.perform(get("/owners/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/unknown/at/present"))
+                .andExpect(model().attributeExists("owner"));
+
+        verify(ownerService, times(0)).save(ArgumentMatchers.any(Owner.class));
+
+    }
+
+    @Test
+    void testProcessCreationForm() throws Exception {
+        //given
+        when(ownerService.save(ArgumentMatchers.any()))
+                .thenReturn(owner1);
+
+        //when
+
+
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.post("/owners/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/" + owner1Id))
+                .andExpect(model().attributeExists("owner"));
+
+
+    }
 
 
 

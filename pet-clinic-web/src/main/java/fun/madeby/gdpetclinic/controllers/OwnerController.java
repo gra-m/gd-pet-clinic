@@ -10,9 +10,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Gra_m on 2022 03 18
@@ -22,6 +24,7 @@ import java.util.List;
 @Controller
 public class OwnerController {
     private final OwnerService OWNER_SERVICE;
+    private final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/unknown/at/present";
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
@@ -30,6 +33,36 @@ public class OwnerController {
     public OwnerController(OwnerService owner_service) {
         OWNER_SERVICE = owner_service;
     }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
+   @GetMapping("/owners/new")
+   public String initCreationForm(Map<String, Object> model) {
+        Owner owner = new Owner();
+        model.put("owner", owner);
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+
+   }
+
+    /**
+     * @Valid Owner owner not available
+     * @param owner
+     * @param result
+     * @return
+     */
+   @PostMapping("/owners/new")
+   public String processCreationForm(Owner owner, BindingResult result) {
+        if (result.hasErrors())
+            return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        else {
+            Owner savedOwner = OWNER_SERVICE.save(owner);
+            return "redirect:/owners/" + savedOwner.getId();
+        }
+   }
+
 
     @GetMapping("/owners/{ownerId}")
     public ModelAndView getOwner(@PathVariable("ownerId") Long ownerId) {
