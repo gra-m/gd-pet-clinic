@@ -1,20 +1,23 @@
 package fun.madeby.gdpetclinic.controllers;
 
 import fun.madeby.gdpetclinic.model.Owner;
+import fun.madeby.gdpetclinic.model.Pet;
 import fun.madeby.gdpetclinic.model.PetType;
 import fun.madeby.gdpetclinic.services.OwnerService;
 import fun.madeby.gdpetclinic.services.PetService;
 import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+
 /**
  * Created by Gra_m on 2022 04 27
  */
-
 @Controller
 @RequestMapping("/owners/{ownerId}")
 public class PetController {
@@ -49,15 +52,32 @@ public class PetController {
 
     //region Add NEW pet to form, process form when POSTED
 
-    /*@GetMapping("/pets/new")
-    public String initCreatePetForm() {
+    @GetMapping("/pets/new")
+    public String initCreatePetForm(Model model, Owner owner) {
+        Pet pet = Pet.builder().build();
+        System.out.println("OWNER   "  + owner);
+        owner.getPets().add(pet);
+        pet.setOwner(owner);
+
+        model.addAttribute("pet", pet);
 
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
     @PostMapping("/pets/new")
-    public String processCreatePetForm(){
-       return VIEWS_DISPLAY_OWNER_WITH_NEW_PET;
+    public String processCreatePetForm(Owner owner, Pet pet,  BindingResult result, Model model){
+
+
+        owner.getPets().add(pet);
+
+        if(result.hasErrors()) {
+            model.addAttribute("pet", pet);
+            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        }
+        else {
+            petService.save(pet);
+            return VIEWS_DISPLAY_OWNER_WITH_NEW_PET + owner.getId();
+        }
     }
 
 
@@ -66,16 +86,16 @@ public class PetController {
 
     //region UPDATE pet to form, process form when POSTED
 
-    @GetMapping("/pets/new")
+    @GetMapping("/pets/update")
     public String initUpdatePetForm() {
 
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/pets/new")
+    @PostMapping("/pets/update")
     public String processUpdatePetForm(){
         return VIEWS_DISPLAY_OWNER_WITH_NEW_PET;
-    }*/
+    }
 
     //endregion
 }

@@ -24,6 +24,10 @@ On: 14/03/2022
 * Creating a multi-action endpoint based on the contents of an object (processFindForm)
 * Injecting/Using a reassigned parameter, a submitted object in:
 * public String processFindForm(Owner owner, BindingResult result, Model model) [owner]
+* @ModelAttribute: 
+  * binds a method parameter or method return value to a named model attribute, and then exposes it to a web view.
+    * [@ControllerAdvice](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)
+
 
 ### Project resources used or useful
 

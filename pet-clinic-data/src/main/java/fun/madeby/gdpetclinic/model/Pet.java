@@ -19,9 +19,10 @@ import java.util.Set;
 public class Pet extends BaseEntity{
 
     @Builder
-    public Pet(Long id, String name){
+    public Pet(Long id, String name, Owner owner){
         super(id);
         this.name = name;
+        this.owner = owner;
 
     }
 

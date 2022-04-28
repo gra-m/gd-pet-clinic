@@ -2,6 +2,7 @@ package fun.madeby.gdpetclinic.controllers;
 
 import fun.madeby.gdpetclinic.model.Owner;
 import fun.madeby.gdpetclinic.model.Pet;
+import fun.madeby.gdpetclinic.model.PetType;
 import fun.madeby.gdpetclinic.services.OwnerService;
 import fun.madeby.gdpetclinic.services.PetService;
 import fun.madeby.gdpetclinic.services.PetTypeService;
@@ -13,12 +14,19 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 @ExtendWith(MockitoExtension.class)
 class PetControllerTest {
     @InjectMocks
@@ -33,6 +41,8 @@ class PetControllerTest {
     @Mock
     PetTypeService petTypeService;
 
+    Owner owner1;
+    Long owner1Id = 1L;
     Pet pet1;
     Long pet1Id = 1L;
     Set<Pet> petSet;
@@ -47,18 +57,36 @@ class PetControllerTest {
         pet1 = Pet.builder().id(pet1Id).build();
         petSet.add(pet1);
 
+
+        owner1 = Owner.builder().id(owner1Id).build();
         mockMvc = MockMvcBuilders
                 .standaloneSetup(controllerUnderTest)
                 .build();
     }
 
 
-   /* @Test
-    void testInitCreatePetForm() {
+    @Test
+    void testInitCreatePetForm() throws Exception {
+        when(ownerService.findById(anyLong()))
+                .thenReturn(owner1);
+
+
+        mockMvc.perform(get("/owners/1/pets/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name(VIEWS_PETS_CREATE_OR_UPDATE_FORM))
+                .andExpect(model().attributeExists("pet"));
+                //.andExpect(model().attributeExists("owner")); exists Owner name displayed but cannot be tested for.
+
     }
 
     @Test
-    void testProcessCreatePetForm() {
+    void testProcessCreatePetForm() throws Exception {
+        when(ownerService.findById(anyLong())).thenReturn(owner1);
+
+        mockMvc.perform(post("/owners/1/pets/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"));
+
     }
 
     @Test
@@ -67,5 +95,5 @@ class PetControllerTest {
 
     @Test
     void testProcessUpdatePetForm() {
-    }*/
+    }
 }
