@@ -9,6 +9,7 @@ import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -23,7 +24,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -65,6 +66,7 @@ class PetControllerTest {
     }
 
 
+    //region ADDNEW
     @Test
     void testInitCreatePetForm() throws Exception {
         when(ownerService.findById(anyLong()))
@@ -86,14 +88,35 @@ class PetControllerTest {
         mockMvc.perform(post("/owners/1/pets/new"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"));
+        //verify(petService.save(ArgumentMatchers.any(Pet.class)));
+
+    }
+
+    //endregion
+
+    //region UPDATE
+    @Test
+    void testInitUpdatePetForm() throws Exception {
+
+        when(petService.findById(anyLong())).thenReturn(pet1);
+
+        mockMvc.perform(get("/owners/1/pets/1/update"))
+                .andExpect(status().isOk())
+                .andExpect(view().name(VIEWS_PETS_CREATE_OR_UPDATE_FORM))
+                .andExpect(model().attributeExists("pet"));
+        verify(petService, times(1)).findById(anyLong());
 
     }
 
     @Test
-    void testInitUpdatePetForm() {
+    void testProcessUpdatePetForm() throws Exception {
+
+        when(ownerService.findById(anyLong())).thenReturn(owner1);
+
+        mockMvc.perform(post("/owners/1/pets/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"));
     }
 
-    @Test
-    void testProcessUpdatePetForm() {
-    }
+    //endregion
 }
