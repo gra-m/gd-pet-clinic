@@ -86,7 +86,7 @@ public class PetController {
 
     //region UPDATE pet to form, process form when POSTED
 
-    @GetMapping("/pets/update")
+    @GetMapping("/pets/{petId}/update")
     public String initUpdatePetForm() {
 
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
