@@ -14,10 +14,16 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity{
+
+    @Builder
+    public Pet(Long id, String name){
+        super(id);
+        this.name = name;
+
+    }
 
     @Column(name = "name")
     private String name;
@@ -27,7 +33,6 @@ public class Pet extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
-    //Lazy default
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
     @Column(name = "birth_date")

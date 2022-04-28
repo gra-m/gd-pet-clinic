@@ -7,9 +7,7 @@ import fun.madeby.gdpetclinic.services.PetService;
 import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -18,10 +16,11 @@ import java.util.Collection;
  */
 
 @Controller
-//@RequestMapping("/owners/{ownerId}") keeping to my convention full path..
+@RequestMapping("/owners/{ownerId}")
 public class PetController {
 
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/pet-form";
+    private static final String VIEWS_DISPLAY_OWNER_WITH_NEW_PET = "redirect:/owners/";
 
     private final PetService petService;
     private final OwnerService ownerService;
@@ -47,4 +46,36 @@ public class PetController {
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
+
+    //region Add NEW pet to form, process form when POSTED
+
+    @GetMapping("/pets/new")
+    public String initCreatePetForm() {
+
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/pets/new")
+    public String processCreatePetForm(){
+       return VIEWS_DISPLAY_OWNER_WITH_NEW_PET;
+    }
+
+
+    //endregion
+
+
+    //region UPDATE pet to form, process form when POSTED
+
+    @GetMapping("/pets/new")
+    public String initUpdatePetForm() {
+
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/pets/new")
+    public String processUpdatePetForm(){
+        return VIEWS_DISPLAY_OWNER_WITH_NEW_PET;
+    }
+
+    //endregion
 }

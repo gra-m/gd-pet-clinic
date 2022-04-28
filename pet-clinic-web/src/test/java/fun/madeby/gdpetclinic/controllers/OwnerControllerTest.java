@@ -28,20 +28,16 @@ class OwnerControllerTest {
     OwnerService ownerService;
     @InjectMocks
     OwnerController controllerUnderTest;
-    // for comparison if poss to get to returned objs
     Owner owner1;
     Long owner1Id = 1L;
     Set<Owner> ownerSet;
-    // My business logic insists on petSet, can be empty
     Set<Pet> petSet;
-    // Test endpoints, standalone == less resource
     MockMvc mockMvc;
     String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/owner-form";
 
     @BeforeEach
     void setUp() {
         ownerSet = new HashSet<>();
-        //(same petset poss issue if H2)
         owner1 = Owner.builder().id(owner1Id).pets(petSet).build();
         ownerSet.add(owner1);
         ownerSet.add(Owner.builder().id(2L).pets(petSet).build());
