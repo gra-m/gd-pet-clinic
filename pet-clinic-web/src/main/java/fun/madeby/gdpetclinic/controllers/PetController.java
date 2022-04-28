@@ -49,7 +49,7 @@ public class PetController {
 
     //region Add NEW pet to form, process form when POSTED
 
-    @GetMapping("/pets/new")
+    /*@GetMapping("/pets/new")
     public String initCreatePetForm() {
 
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -75,7 +75,7 @@ public class PetController {
     @PostMapping("/pets/new")
     public String processUpdatePetForm(){
         return VIEWS_DISPLAY_OWNER_WITH_NEW_PET;
-    }
+    }*/
 
     //endregion
 }
