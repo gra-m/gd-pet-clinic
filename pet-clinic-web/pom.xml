@@ -3,7 +3,7 @@
     <parent>
         <artifactId>gd-pet-clinic</artifactId>
         <groupId>fun.madeby</groupId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>fun.madeby</groupId>
             <artifactId>pet-clinic-data</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4</version>
             <scope>compile</scope>
         </dependency>
             <dependency>
