@@ -27,6 +27,10 @@ On: 14/03/2022
 * @ModelAttribute: 
   * binds a method parameter or method return value to a named model attribute, and then exposes it to a web view.
     * [@ControllerAdvice](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)
+* Exception Handling:
+  * @ResponseStatus custom exception -> which HTTP status is thrown globally
+  * @ExceptionHandler -> @Controller level
+
 
 
 ### Project resources used or useful
@@ -39,7 +43,7 @@ On: 14/03/2022
 
 Table of Contents:
 
-1. [Heading 1](#1)
+1. [Exception Handling](#1)
 2. [Heading 2](#2)
 
    a. [Sub Heading a](#2a)
@@ -47,7 +51,16 @@ Table of Contents:
 4. [Heading 4](#4)
 
 <a id="1"></a>
-Heading 1:
+Exception Handling:
+* @ResponseStatus custom exception -> which HTTP status is thrown globally
+* @ExceptionHandler -> @Controller level
+* Interface: HandlerExceptionResolver
+  * ExceptionHandlerExceptionResolver -> matches uncaught exceptions to @ExceptionHandler
+  * ResponseStatusExceptionResolver -> looks for uncaught exceptions matching @ResponseStatus
+  * DefaultHandlerExceptionResolver -> (Internal to SpringMvc) converts standard Spring exceptions to HTTP status codes
+* Just HTTP status == @ResponseStatus
+* Redirection to view needed = SimpleMappingExceptionResolver
+* both? == @ExceptionHandler on controller
 
 <a id="2"></a>
 Heading 2:
