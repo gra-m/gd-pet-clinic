@@ -77,7 +77,7 @@ class PetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name(VIEWS_PETS_CREATE_OR_UPDATE_FORM))
                 .andExpect(model().attributeExists("pet"));
-                //.andExpect(model().attributeExists("owner")); exists Owner name displayed but cannot be tested for.
+                //.andExpect(model().attributeExists("owner")); exists Owner name displayed, @ModelAttribute.
 
     }
 
