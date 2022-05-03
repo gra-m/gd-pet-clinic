@@ -4,13 +4,13 @@ import fun.madeby.gdpetclinic.model.*;
 import fun.madeby.gdpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
-
+import lombok.extern.slf4j.Slf4j;
 /**
  * Created by Gra_m on 2022 03 19
  */
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -40,9 +40,8 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-        //Testing builder, it now works with inheritance:
+        System.out.println("BOOTSTRAPPING............................................");
         Owner.builder().address("asdf").build(); //
-        // builder can access firstname/lastname/id of super classes.
 
 
         Speciality speciality01 = new Speciality();
@@ -65,7 +64,7 @@ public class DataLoader implements CommandLineRunner {
         PetType savedPetType1 = petTypeService.save(petType1);
         PetType savedPetType2 = petTypeService.save(petType2);
         PetType savedPetType3 = petTypeService.save(petType3);
-        System.out.println("Loaded PetTypes...");
+        log.info("Loaded PetTypes...");
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Hilbert");
@@ -107,14 +106,14 @@ public class DataLoader implements CommandLineRunner {
         pet1Visit.setDate(LocalDate.now());
         pet1Visit.setDescription("Ate too much pie");
         visitService.save(pet1Visit);
-        System.out.println("Loaded Owners with their pets....");
+        log.info("Loaded Owners with their pets....");
 
-        System.out.println("PRINTING OWNER PETS");
+        log.info("PRINTING OWNER PETS");
         owner1.getPets().forEach(pet -> {
-            System.out.println(pet);
+            log.info("Owner1:Pets: " + pet.toString());
         });
         owner2.getPets().forEach(pet -> {
-            System.out.println(pet);
+            log.info("Owner2:Pets: " + pet.toString());
         });
 
         Vet vet1 = new Vet();
@@ -128,14 +127,16 @@ public class DataLoader implements CommandLineRunner {
         vet2.setLastName("Vhshwas");
         vet2.getSpecialities().add(savedSurgery);
         vetService.save(vet2);
-        System.out.println("Loaded Vets....");
+        log.info("Loaded Vets....");
 
-        System.out.println("PRINTING VET SPECIALITIES");
+        log.info("PRINTING VET SPECIALITIES");
         vet1.getSpecialities().forEach(spec -> {
-                    System.out.println(spec.toString());
+                    log.info(spec.toString());
                 });
         vet2.getSpecialities().forEach(spec -> {
-            System.out.println(spec.toString());
+            log.info(spec.toString());
         });
+
+        System.out.println(".............................................BOOTSTRAPPED");
     }
 }

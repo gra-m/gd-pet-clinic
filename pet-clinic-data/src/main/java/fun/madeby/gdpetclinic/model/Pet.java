@@ -40,4 +40,9 @@ public class Pet extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.petType + " " + this.birthDate;
+    }
 }

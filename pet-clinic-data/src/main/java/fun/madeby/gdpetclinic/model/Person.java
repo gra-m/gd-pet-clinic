@@ -10,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 /**
  * Created by Gra_m on 2022 03 14
  */
-
 @Getter
 @Setter
 @NoArgsConstructor

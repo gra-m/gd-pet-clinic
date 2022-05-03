@@ -38,6 +38,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.2.3.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+   <!--     <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+            <scope>test</scope>
+        </dependency>-->
         <!-- #2 If V6 hibernate.validator  does not work these bindings are from v11 vid 240 -->
         <!--
         <dependency>
