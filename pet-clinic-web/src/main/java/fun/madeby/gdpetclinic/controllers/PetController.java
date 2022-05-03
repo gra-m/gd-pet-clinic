@@ -13,6 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 /**
@@ -87,7 +88,7 @@ public class PetController {
     //region UPDATE pet to form, process form when POSTED
 
     @GetMapping("/pets/{petId}/update")
-    public String initUpdatePetForm(Model model, @PathVariable Long petId) {
+    public String initUpdatePetForm(Owner owner, Model model, @PathVariable Long petId) {
         Pet pet = petService.findById(petId);
 
         model.addAttribute("pet", pet);
@@ -95,13 +96,19 @@ public class PetController {
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/pets/update")
-    public String processUpdatePetForm(@PathVariable Long ownerId, Pet pet, BindingResult result, Model model){
+    @PostMapping("/pets/{petId}/update")
+    public String processUpdatePetForm(@PathVariable Long ownerId, @PathVariable Long petId,  Pet pet, BindingResult result, Model model){
 
         if(result.hasErrors()) {
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
+        Pet retrievedPet = petService.findById(petId);
+
+        retrievedPet.setName(pet.getName());
+        retrievedPet.setBirthDate(pet.getBirthDate());
+        retrievedPet.setPetType(pet.getPetType());
+
         petService.save(pet);
 
         return VIEWS_DISPLAY_OWNER_WITH_NEW_OR_UPDATED_PET + ownerId;
