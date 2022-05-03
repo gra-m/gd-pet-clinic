@@ -1,5 +1,7 @@
 fun\madeby\gdpetclinic\controllers\PetController.class
+fun\madeby\gdpetclinic\formatters\PetTypeFormatter.class
 fun\madeby\gdpetclinic\controllers\IndexController.class
+fun\madeby\gdpetclinic\controllers\VisitController.class
 fun\madeby\gdpetclinic\controllers\OwnerController.class
 fun\madeby\gdpetclinic\bootstrap\DataLoader.class
 fun\madeby\gdpetclinic\GdPetClinicApplication.class

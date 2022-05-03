@@ -1,3 +1,4 @@
 fun\madeby\gdpetclinic\controllers\OwnerControllerTest.class
 fun\madeby\gdpetclinic\GdPetClinicApplicationTests.class
 fun\madeby\gdpetclinic\controllers\PetControllerTest.class
+fun\madeby\gdpetclinic\controllers\VisitControllerTest.class

@@ -3,6 +3,7 @@ package fun.madeby.gdpetclinic.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,7 @@ public class Owner extends Person{
         this.pets = pets;
     }
 
+    @NotBlank
     @Column(name = "address")
     private String address;
     @Column(name = "city")
