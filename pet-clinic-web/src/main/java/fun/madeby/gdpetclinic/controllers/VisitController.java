@@ -69,6 +69,7 @@ public class VisitController {
             return VIEWS_VISITS_CREATE_OR_UPDATE_FORM;
         }
         else {
+            visit.setPet(pet);
             visitService.save(visit);
             return VIEWS_DISPLAY_OWNER_WITH_NEW_OR_UPDATED_VISIT + pet.getOwner().getId();
         }

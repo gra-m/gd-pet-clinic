@@ -74,6 +74,7 @@ public class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
         else {
+            pet.setOwner(owner);
             petService.save(pet);
             return VIEWS_DISPLAY_OWNER_WITH_NEW_OR_UPDATED_PET + owner.getId();
         }
