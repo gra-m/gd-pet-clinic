@@ -5,6 +5,7 @@ import fun.madeby.gdpetclinic.repositories.OwnerRepository;
 import fun.madeby.gdpetclinic.repositories.PetRepository;
 import fun.madeby.gdpetclinic.repositories.PetTypeRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -55,6 +56,7 @@ class OwnerSDJpaServiceTest {
     }
 
     @Test
+    @DisplayName("PassPath findOwnerbyID")
     void findByIdFound() {
         //given returnOwner
         when(OWNER_REPO.findById(anyLong())).thenReturn(Optional.of(returnOwner));
@@ -64,6 +66,7 @@ class OwnerSDJpaServiceTest {
     }
 
     @Test
+    @DisplayName("FailPath findOwnerbyID")
     void findByIdNotFound() {
         //given returnOwner
         when(OWNER_REPO.findById(anyLong())).thenReturn(Optional.empty());
