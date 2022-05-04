@@ -20,14 +20,12 @@ import java.util.Set;
 public class Pet extends BaseEntity{
 
     @Builder
-    public Pet(Long id, String name, Owner owner, PetType petType, String birthDate){
+    public Pet(Long id, String name, Owner owner){
         super(id);
         this.name = name;
         this.owner = owner;
-        this.petType = petType;
-        this.birthDate = LocalDate.parse(birthDate);;
-
     }
+
 
     @Column(name = "name")
     private String name;

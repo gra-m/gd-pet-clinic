@@ -47,13 +47,12 @@ class PetSDJpaServiceTest {
 	void setUp() {
 
 
-		// No need for full pet objects here
 		returnOwner = Owner.builder().id(ownerId).lastName("Smith").build();
 		returnPetType1 = PetType.builder().name("Dog").build();
 		returnPetType2 = PetType.builder().name("Cat").build();
-		returnPet1 = Pet.builder().id(returnPet1Id).name("Dogkey").petType(returnPetType1).owner(returnOwner).birthDate("2021-04-12").build();
-		returnPet2 = Pet.builder().id(returnPet2Id).name("Tiddles").petType(returnPetType2).owner(returnOwner).birthDate("2019-09-29").build();
-		returnPet3 = Pet.builder().id(returnPet3Id).name("Sang-Froid").petType(returnPetType2).owner(returnOwner).birthDate("2015-03-30").build();
+		returnPet1 = Pet.builder().id(returnPet1Id).name("Dogkey").build();
+		returnPet2 = Pet.builder().id(returnPet2Id).name("Tiddles").build();
+		returnPet3 = Pet.builder().id(returnPet3Id).name("Sang-Froid").build();
 
 		petSet.add(returnPet1);
 		petSet.add(returnPet2);
