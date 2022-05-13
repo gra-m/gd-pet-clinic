@@ -41,6 +41,9 @@ On: 14/03/2022
 
 [Dillinger](https://dillinger.io "until you are off of visible page..")
 
+[PossInterestingRefactorExercise](https://github.com/Celebes/spring-boot-pet-clinic/blob/master/pet-clinic-data/src/main/java/guru/springframework/sfgpetclinic/services/jpa/AbstractJpaService.java)
+
+
 Table of Contents:
 
 1. [Exception Handling](#1)

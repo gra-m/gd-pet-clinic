@@ -57,6 +57,18 @@
             <artifactId>mockito-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--Attempting to bring in for Integration Testing different module just for test scope-->
+<!--        <dependency>
+            <groupId>fun.madeby</groupId>
+            <artifactId>pet-clinic-web</artifactId>
+            <version>0.0.4</version>
+            <scope>test</scope>
+        </dependency>-->
 
 
     </dependencies>
