@@ -2,8 +2,6 @@ package fun.madeby.gdpetclinic.services.springdatajpa;
 
 import fun.madeby.gdpetclinic.model.Owner;
 import fun.madeby.gdpetclinic.repositories.OwnerRepository;
-import fun.madeby.gdpetclinic.repositories.PetRepository;
-import fun.madeby.gdpetclinic.repositories.PetTypeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,9 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,10 +23,6 @@ class OwnerSDJpaServiceTest {
 
     @Mock
     OwnerRepository OWNER_REPO;
-    @Mock
-    PetRepository PET_REPO;
-    @Mock
-    PetTypeRepository PET_TYPE_REPO;
     Owner returnOwner;
     @InjectMocks
     OwnerSDJpaService service;
@@ -44,7 +36,7 @@ class OwnerSDJpaServiceTest {
     @Test
     void findAll() {
         //given
-        Set<Owner> returnOwnersSet = new HashSet<>();
+        List<Owner> returnOwnersSet = new ArrayList<>();
         returnOwnersSet.add(returnOwner);
         returnOwnersSet.add(Owner.builder().id(2L).build());
         when(OWNER_REPO.findAll())
@@ -52,6 +44,7 @@ class OwnerSDJpaServiceTest {
         Set<Owner> owners = service.findAll();
         //then
         assertNotNull(owners);
+        verify(OWNER_REPO, times(1)).findAll();
         assertEquals(2, owners.size());
     }
 

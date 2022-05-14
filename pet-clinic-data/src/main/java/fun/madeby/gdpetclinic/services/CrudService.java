@@ -1,6 +1,5 @@
 package fun.madeby.gdpetclinic.services;
 
-import fun.madeby.gdpetclinic.model.BaseEntity;
 
 import java.util.Set;
 
