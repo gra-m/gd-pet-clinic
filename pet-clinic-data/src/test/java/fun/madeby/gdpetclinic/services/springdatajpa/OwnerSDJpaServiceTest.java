@@ -36,11 +36,13 @@ class OwnerSDJpaServiceTest {
     @Test
     void findAll() {
         //given
-        List<Owner> returnOwnersSet = new ArrayList<>();
-        returnOwnersSet.add(returnOwner);
-        returnOwnersSet.add(Owner.builder().id(2L).build());
+        //JpaRepository can only return a list
+        List<Owner> returnOwnersList = new ArrayList<>();
+        returnOwnersList.add(returnOwner);
+        returnOwnersList.add(Owner.builder().id(2L).build());
         when(OWNER_REPO.findAll())
-                .thenReturn(returnOwnersSet);
+                .thenReturn(returnOwnersList);
+        //service Set comes from implementation of CrudService via OwnerService
         Set<Owner> owners = service.findAll();
         //then
         assertNotNull(owners);
