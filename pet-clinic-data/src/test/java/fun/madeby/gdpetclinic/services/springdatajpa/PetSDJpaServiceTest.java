@@ -12,10 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -35,7 +32,7 @@ class PetSDJpaServiceTest {
 	Pet returnPet3;
 	PetType returnPetType1;
 	PetType returnPetType2;
-	Set<Pet> petSet = new HashSet<>();
+	List<Pet> petList = new ArrayList<>();
 
 	Long ownerId = 1L;
 	Long returnPet1Id = 1L;
@@ -54,9 +51,9 @@ class PetSDJpaServiceTest {
 		returnPet2 = Pet.builder().id(returnPet2Id).name("Tiddles").build();
 		returnPet3 = Pet.builder().id(returnPet3Id).name("Sang-Froid").build();
 
-		petSet.add(returnPet1);
-		petSet.add(returnPet2);
-		petSet.add(returnPet3);
+		petList.add(returnPet1);
+		petList.add(returnPet2);
+		petList.add(returnPet3);
 	}
 
 	@Test
@@ -64,13 +61,13 @@ class PetSDJpaServiceTest {
 	void testFindAll() {
 		//given
 		when(petRepository.findAll())
-				.thenReturn(petSet);
+				.thenReturn(petList);
 		//when
 		Set<Pet> returnedSet = serviceUnderTest.findAll();
 
 		//then
 		assertNotNull(returnedSet);
-		assertEquals(petSet.size(), returnedSet.size());
+		assertEquals(petList.size(), returnedSet.size());
 		verify(petRepository, times(1)).findAll();
 
 	}

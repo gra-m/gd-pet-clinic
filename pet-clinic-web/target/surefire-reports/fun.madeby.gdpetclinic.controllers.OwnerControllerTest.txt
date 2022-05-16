@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: fun.madeby.gdpetclinic.controllers.OwnerControllerTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.643 s - in fun.madeby.gdpetclinic.controllers.OwnerControllerTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.791 s - in fun.madeby.gdpetclinic.controllers.OwnerControllerTest

@@ -5,6 +5,7 @@ import fun.madeby.gdpetclinic.services.CrudService;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -27,7 +28,7 @@ public abstract class AbstractJpaService<T extends BaseEntity,
 
 	@Override
 	public T findById(Long id) {
-		return repository.findById(id).orElse(null);
+		return repository.findById(id).orElseThrow(NoSuchElementException::new);
 	}
 
 	@Override

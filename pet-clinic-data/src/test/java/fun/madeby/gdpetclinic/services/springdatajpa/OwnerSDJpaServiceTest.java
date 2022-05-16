@@ -25,7 +25,7 @@ class OwnerSDJpaServiceTest {
     OwnerRepository OWNER_REPO;
     Owner returnOwner;
     @InjectMocks
-    OwnerSDJpaService service;
+    OwnerSDJpaService serviceUnderTest;
 
     @BeforeEach
     void setUp() {
@@ -43,7 +43,7 @@ class OwnerSDJpaServiceTest {
         when(OWNER_REPO.findAll())
                 .thenReturn(returnOwnersList);
         //service Set comes from implementation of CrudService via OwnerService
-        Set<Owner> owners = service.findAll();
+        Set<Owner> owners = serviceUnderTest.findAll();
         //then
         assertNotNull(owners);
         verify(OWNER_REPO, times(1)).findAll();
@@ -55,12 +55,12 @@ class OwnerSDJpaServiceTest {
     void findByIdFound() {
         //given returnOwner
         when(OWNER_REPO.findById(anyLong())).thenReturn(Optional.of(returnOwner));
-        Owner owner = service.findById(1L);
+        Owner owner = serviceUnderTest.findById(1L);
         //then
         assertNotNull(owner);
     }
 
-    @Test
+    /*@Test
     @DisplayName("FailPath findOwnerbyID")
     void findByIdNotFound() {
         //given returnOwner
@@ -68,7 +68,22 @@ class OwnerSDJpaServiceTest {
         Owner owner = service.findById(1L);
         //then
         assertNull(owner);
+    }*/
+
+    @Test
+    @DisplayName("TestFindByIdNotFound: Throws ElementNotFoundException")
+    void testFindByIdNotFound() {
+        Optional<Owner> returnOwner1Optional = Optional.empty();
+        //given
+        when(OWNER_REPO.findById(anyLong()))
+                .thenReturn(returnOwner1Optional);
+
+        assertThrows(NoSuchElementException.class, () -> serviceUnderTest.findById(returnOwner.getId()));
+        verify(OWNER_REPO, times(1)).findById(anyLong());
     }
+
+
+
 
     @Test
     void save() {
@@ -76,7 +91,7 @@ class OwnerSDJpaServiceTest {
         when(OWNER_REPO.save(any()))
                 .thenReturn(returnOwner);
         //then
-        Owner savedOwner = service.save(returnOwner); // not saving another made owner think any() makes arbitrary
+        Owner savedOwner = serviceUnderTest.save(returnOwner); // not saving another made owner think any() makes arbitrary
         assertNotNull(savedOwner);
 
         verify(OWNER_REPO).save(any()); // Mockito verify to called default once (belt and braces)
@@ -87,7 +102,7 @@ class OwnerSDJpaServiceTest {
     void delete() {
         //given returnOwner
         //when
-        service.delete(returnOwner);
+        serviceUnderTest.delete(returnOwner);
         //then
         verify(OWNER_REPO).delete(any()); // required here void method
     }
@@ -96,7 +111,7 @@ class OwnerSDJpaServiceTest {
     void deleteById() {
         //given returnOwner
         //when
-        service.deleteById(1L);
+        serviceUnderTest.deleteById(1L);
         //then
         verify(OWNER_REPO, times(1)).deleteById(anyLong()); // here showing how no of 'times'
     }
@@ -106,6 +121,6 @@ class OwnerSDJpaServiceTest {
         //given return owner
         when(OWNER_REPO.findOwnerByLastName(any()))
                 .thenReturn(returnOwner);
-        Owner owner = service.findByLastName("smith");
+        Owner owner = serviceUnderTest.findByLastName("smith");
     }
 }
