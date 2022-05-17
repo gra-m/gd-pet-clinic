@@ -5,6 +5,7 @@ import fun.madeby.gdpetclinic.repositories.PetTypeRepository;
 import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
@@ -16,38 +17,11 @@ import java.util.Set;
 
 @Service
 @Profile("jpaService")
-public class PetTypeSDJpaService implements PetTypeService {
-    private final PetTypeRepository petTypeRepository;
+@Transactional
+public class PetTypeSDJpaService extends AbstractJpaService<PetType, PetTypeRepository> implements PetTypeService {
 
-    public PetTypeSDJpaService(PetTypeRepository pet_type_repository) {
-        petTypeRepository = pet_type_repository;
+    public PetTypeSDJpaService(PetTypeRepository repository) {
+        super(repository);
     }
 
-    @Override
-    public Set<PetType> findAll() {
-        //return new HashSet<>((Collection<? extends PetType>) PET_TYPE_REPOSITORY.findAll());
-        Set<PetType> setFromIterable = new HashSet<>();
-        petTypeRepository.findAll().forEach(setFromIterable::add);
-        return setFromIterable;
-    }
-
-    @Override
-    public PetType findById(Long aLong) {
-        return petTypeRepository.findById(aLong).orElseThrow(NoSuchElementException::new);
-    }
-
-    @Override
-    public PetType save(PetType object) {
-        return petTypeRepository.save(object);
-    }
-
-    @Override
-    public void delete(PetType object) {
-        petTypeRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
-        petTypeRepository.deleteById(aLong);
-    }
 }

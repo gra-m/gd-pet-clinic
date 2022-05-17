@@ -5,11 +5,7 @@ import fun.madeby.gdpetclinic.repositories.SpecialityRepository;
 import fun.madeby.gdpetclinic.services.SpecialitiesService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Gra_m on 2022 04 08
@@ -17,35 +13,11 @@ import java.util.Set;
 
 @Service
 @Profile("jpaService")
-public class SpecialitiesSDJpaService implements SpecialitiesService {
-    private final SpecialityRepository specialityRepository;
+@Transactional
+public class SpecialitiesSDJpaService extends AbstractJpaService<Speciality, SpecialityRepository> implements SpecialitiesService {
 
-    public SpecialitiesSDJpaService(SpecialityRepository speciality_repository) {
-        specialityRepository = speciality_repository;
+    public SpecialitiesSDJpaService(SpecialityRepository repository) {
+        super(repository);
     }
 
-    @Override
-    public Set<Speciality> findAll() {
-        return new HashSet<>((Collection<? extends Speciality>) specialityRepository.findAll());
-    }
-
-    @Override
-    public Speciality findById(Long aLong) {
-        return specialityRepository.findById(aLong).orElseThrow(NoSuchElementException::new) ;
-    }
-
-    @Override
-    public Speciality save(Speciality object) {
-        return specialityRepository.save(object);
-    }
-
-    @Override
-    public void delete(Speciality object) {
-        specialityRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
-        specialityRepository.deleteById(aLong);
-    }
 }
