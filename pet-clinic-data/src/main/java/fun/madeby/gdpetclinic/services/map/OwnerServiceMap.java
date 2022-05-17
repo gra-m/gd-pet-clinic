@@ -9,9 +9,11 @@ import fun.madeby.gdpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -105,6 +107,12 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public List<Owner> findAllByLastName(String lastName) {
-        return null;
+        if(lastName.equals(""))
+            return new ArrayList<>(this.findAll());
+
+        return this.findAll()
+                    .stream()
+                    .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                    .collect(Collectors.toList());
     }
 }
