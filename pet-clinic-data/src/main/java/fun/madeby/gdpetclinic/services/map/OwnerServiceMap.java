@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Profile({"default", "map"})
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService{
+public class OwnerServiceMap extends AbstractMapService<Owner> implements OwnerService{
     private final PetTypeService petTypeService;
     private final PetService petService;
 
@@ -32,22 +32,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         petService = pet_service;
     }
 
-
-    @Override
-    public Set<Owner> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
-
-    }
-
-    @Override
-    public void delete(Owner object) {
-        super.delete(object);
-    }
 
     @Override
     public Owner save(Owner obj) {
@@ -89,11 +73,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
             }
         });
         return true;
-    }
-
-    @Override
-    public Owner findById(Long id) {
-        return super.findById(id);
     }
 
     @Override
