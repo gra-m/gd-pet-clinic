@@ -34,6 +34,7 @@ class OwnerSDJpaServiceTest {
     }
 
     @Test
+    @DisplayName("PassPath_FindAllOwners")
     void findAll() {
         //given
         //JpaRepository can only return a list
@@ -51,7 +52,7 @@ class OwnerSDJpaServiceTest {
     }
 
     @Test
-    @DisplayName("PassPath findOwnerbyID")
+    @DisplayName("PassPath_FindOwnerbyID")
     void findByIdFound() {
         //given returnOwner
         when(OWNER_REPO.findById(anyLong())).thenReturn(Optional.of(returnOwner));
@@ -71,7 +72,7 @@ class OwnerSDJpaServiceTest {
     }*/
 
     @Test
-    @DisplayName("TestFindByIdNotFound: Throws ElementNotFoundException")
+    @DisplayName("TestFindOwnerByIdNotFound: Throws ElementNotFoundException")
     void testFindByIdNotFound() {
         Optional<Owner> returnOwner1Optional = Optional.empty();
         //given
@@ -87,14 +88,13 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void save() {
-        //given returnOwner
         when(OWNER_REPO.save(any()))
                 .thenReturn(returnOwner);
         //then
-        Owner savedOwner = serviceUnderTest.save(returnOwner); // not saving another made owner think any() makes arbitrary
+        Owner savedOwner = serviceUnderTest.save(returnOwner);
         assertNotNull(savedOwner);
 
-        verify(OWNER_REPO).save(any()); // Mockito verify to called default once (belt and braces)
+        verify(OWNER_REPO).save(any());
 
     }
 

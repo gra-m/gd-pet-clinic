@@ -89,7 +89,7 @@ class PetSDJpaServiceTest {
 
 
 	@Test
-	@DisplayName("TestFindByIdNotFound: Throws ElementNotFoundException")
+	@DisplayName("TestFindPetByIdNotFound: Throws ElementNotFoundException")
 	void testFindByIdNotFound() {
 		Optional<Pet> returnPet1Optional = Optional.empty();
 		//given
