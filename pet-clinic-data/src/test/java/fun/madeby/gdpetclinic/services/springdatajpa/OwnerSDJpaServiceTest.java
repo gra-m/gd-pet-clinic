@@ -22,15 +22,16 @@ import static org.mockito.Mockito.*;
 class OwnerSDJpaServiceTest {
 
     @Mock
-    OwnerRepository OWNER_REPO;
+    OwnerRepository ownerRepository;
     Owner returnOwner;
+    final String RETURN_OWNER_LASTNAME = "Smith";
     @InjectMocks
     OwnerSDJpaService serviceUnderTest;
 
     @BeforeEach
     void setUp() {
         // ensure clean object for each test
-        returnOwner = Owner.builder().id(1L).lastName("Smith").build();
+        returnOwner = Owner.builder().id(1L).lastName(RETURN_OWNER_LASTNAME).build();
     }
 
     @Test
@@ -41,13 +42,13 @@ class OwnerSDJpaServiceTest {
         List<Owner> returnOwnersList = new ArrayList<>();
         returnOwnersList.add(returnOwner);
         returnOwnersList.add(Owner.builder().id(2L).build());
-        when(OWNER_REPO.findAll())
+        when(ownerRepository.findAll())
                 .thenReturn(returnOwnersList);
         //service Set comes from implementation of CrudService via OwnerService
         Set<Owner> owners = serviceUnderTest.findAll();
         //then
         assertNotNull(owners);
-        verify(OWNER_REPO, times(1)).findAll();
+        verify(ownerRepository, times(1)).findAll();
         assertEquals(2, owners.size());
     }
 
@@ -55,7 +56,7 @@ class OwnerSDJpaServiceTest {
     @DisplayName("PassPath_FindOwnerbyID")
     void findByIdFound() {
         //given returnOwner
-        when(OWNER_REPO.findById(anyLong())).thenReturn(Optional.of(returnOwner));
+        when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
         Owner owner = serviceUnderTest.findById(1L);
         //then
         assertNotNull(owner);
@@ -72,15 +73,15 @@ class OwnerSDJpaServiceTest {
     }*/
 
     @Test
-    @DisplayName("TestFindOwnerByIdNotFound: Throws ElementNotFoundException")
+    @DisplayName("FailPath_findOwnerbyID_ThrowsElementNotFoundException")
     void testFindByIdNotFound() {
         Optional<Owner> returnOwner1Optional = Optional.empty();
         //given
-        when(OWNER_REPO.findById(anyLong()))
+        when(ownerRepository.findById(anyLong()))
                 .thenReturn(returnOwner1Optional);
 
         assertThrows(NoSuchElementException.class, () -> serviceUnderTest.findById(returnOwner.getId()));
-        verify(OWNER_REPO, times(1)).findById(anyLong());
+        verify(ownerRepository, times(1)).findById(anyLong());
     }
 
 
@@ -88,13 +89,13 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void save() {
-        when(OWNER_REPO.save(any()))
+        when(ownerRepository.save(any()))
                 .thenReturn(returnOwner);
         //then
         Owner savedOwner = serviceUnderTest.save(returnOwner);
         assertNotNull(savedOwner);
 
-        verify(OWNER_REPO).save(any());
+        verify(ownerRepository).save(any());
 
     }
 
@@ -104,7 +105,7 @@ class OwnerSDJpaServiceTest {
         //when
         serviceUnderTest.delete(returnOwner);
         //then
-        verify(OWNER_REPO).delete(any()); // required here void method
+        verify(ownerRepository).delete(any()); // required here void method
     }
 
     @Test
@@ -113,14 +114,18 @@ class OwnerSDJpaServiceTest {
         //when
         serviceUnderTest.deleteById(1L);
         //then
-        verify(OWNER_REPO, times(1)).deleteById(anyLong()); // here showing how no of 'times'
+        verify(ownerRepository, times(1)).deleteById(anyLong()); // here showing how no of 'times'
     }
 
     @Test
+    @DisplayName("PassPath_FindOwnerByLastName")
     void findByLastName() {
         //given return owner
-        when(OWNER_REPO.findOwnerByLastName(any()))
+        when(ownerRepository.findOwnerByLastName(any()))
                 .thenReturn(returnOwner);
-        Owner owner = serviceUnderTest.findByLastName("smith");
+        Owner owner = serviceUnderTest.findByLastName(RETURN_OWNER_LASTNAME);
+
+        assertNotNull(owner);
+        assertEquals(RETURN_OWNER_LASTNAME, owner.getLastName());
     }
 }

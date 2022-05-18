@@ -21,7 +21,7 @@ public class VetSDJpaService extends AbstractJpaService<Vet, VetRepository> impl
     }
 
     @Override
-    public Vet findByLastName(String lastName) {
+    public Vet findByVetByLastName(String lastName) {
        return repository.findVetByLastName(lastName);
     }
 }

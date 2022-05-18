@@ -7,5 +7,5 @@ import fun.madeby.gdpetclinic.model.Vet;
  */
 
 public interface VetService extends CrudService<Vet>{
-    Vet findByLastName(String lastName);
+    Vet findByVetByLastName(String lastName);
 }
